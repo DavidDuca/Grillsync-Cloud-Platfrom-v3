@@ -32,7 +32,7 @@ export default function OrdersPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold sm:text-2xl">Orders</h1>
-          <p className="text-xs text-muted sm:text-sm">Synced from your POS systems.</p>
+          <p className="text-sm text-muted">Synced from your POS systems.</p>
         </div>
         <button onClick={load} className="self-start rounded-md border border-border bg-panel px-3 py-2 text-sm hover:border-brand/60 sm:self-auto">
           <RefreshCw className={`mr-1 inline h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />Refresh
@@ -64,7 +64,7 @@ export default function OrdersPage() {
           <tbody>
             {orders.map((o) => (
               <tr key={o._id} className="border-b border-border/50 last:border-0">
-                <td className="px-4 py-3 font-mono text-xs">{o.orderId}</td>
+                <td className="px-4 py-3 font-mono text-xs break-all">{o.orderId}</td>
                 <td className="px-4 py-3 text-muted">{o.branchName || o.branchId}</td>
                 <td className="px-4 py-3 text-muted">{(o.items || []).reduce((s: number, i: any) => s + (i.quantity || 0), 0)}</td>
                 <td className="px-4 py-3 font-medium whitespace-nowrap">{peso(o.total)}</td>
@@ -77,11 +77,11 @@ export default function OrdersPage() {
         </table>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
+      <div className="flex flex-col items-stretch gap-2 text-sm sm:flex-row sm:items-center sm:justify-between">
         <span className="text-muted">Page {page} of {pages}</span>
         <div className="flex gap-2">
-          <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="rounded-md border border-border bg-panel px-3 py-1.5 disabled:opacity-40">Prev</button>
-          <button disabled={page >= pages} onClick={() => setPage((p) => p + 1)} className="rounded-md border border-border bg-panel px-3 py-1.5 disabled:opacity-40">Next</button>
+          <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="flex-1 rounded-md border border-border bg-panel px-3 py-1.5 disabled:opacity-40 sm:flex-none">Prev</button>
+          <button disabled={page >= pages} onClick={() => setPage((p) => p + 1)} className="flex-1 rounded-md border border-border bg-panel px-3 py-1.5 disabled:opacity-40 sm:flex-none">Next</button>
         </div>
       </div>
     </div>

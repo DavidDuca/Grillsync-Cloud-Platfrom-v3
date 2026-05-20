@@ -1,21 +1,29 @@
-import Link from "next/link";
-
-export function AuthFooter() {
+export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border bg-panel/40 px-4 py-5 text-center text-xs text-muted sm:px-6">
+    <footer className="mt-10 border-t border-border/60 bg-panel/40 px-4 py-6 text-center text-xs text-muted">
       <p>
-        © {new Date().getFullYear()} GrillSync Cloud · Developed by{" "}
-        <Link
+        &copy; {new Date().getFullYear()} GrillSync Cloud. Built by{" "}
+        <a
           href="https://seedlynx.vercel.app"
           target="_blank"
           rel="noopener noreferrer"
           className="text-brand hover:underline"
         >
           Seedlynx
-        </Link>
+        </a>
+        .
       </p>
-      <p className="mt-1 text-[11px] text-muted/80">
-        Crafting reliable cloud platforms for modern businesses.
+      <p className="mt-1">
+        Visit{" "}
+        <a
+          href="https://seedlynx.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-text"
+        >
+          seedlynx.vercel.app
+        </a>{" "}
+        for more.
       </p>
     </footer>
   );

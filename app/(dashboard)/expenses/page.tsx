@@ -49,7 +49,7 @@ export default function ExpensesPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold sm:text-2xl">Expenses</h1>
-          <p className="text-xs text-muted sm:text-sm">Affects profit analytics. Supports branch filtering.</p>
+          <p className="text-sm text-muted">Affects profit analytics. Supports branch filtering.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <select value={branchId} onChange={(e) => setBranchId(e.target.value)} className="min-w-0 flex-1 rounded-md border border-border bg-panel2 px-3 py-2 text-sm sm:flex-none">
@@ -89,7 +89,7 @@ export default function ExpensesPage() {
 
       {show && (
         <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/60 p-4" onClick={() => setShow(false)}>
-          <form onSubmit={save} onClick={(e) => e.stopPropagation()} className="glass my-auto grid w-full max-w-md gap-3 rounded-2xl p-5">
+          <form onSubmit={save} onClick={(e) => e.stopPropagation()} className="glass my-auto grid max-h-[90vh] w-full max-w-md gap-3 overflow-y-auto rounded-2xl p-5">
             <h3 className="text-base font-semibold">Add expense</h3>
             <input required placeholder="Description" value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })}
               className="rounded-md border border-border bg-panel2 px-3 py-2 outline-none focus:border-brand" />

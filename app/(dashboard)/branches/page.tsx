@@ -29,7 +29,7 @@ export default function BranchesPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold sm:text-2xl">Branches</h1>
-          <p className="text-xs text-muted sm:text-sm">One row per location with API credentials.</p>
+          <p className="text-sm text-muted">One row per location with API credentials.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button onClick={load} className="rounded-md border border-border bg-panel px-3 py-2 text-sm hover:border-brand/60">
@@ -51,7 +51,7 @@ export default function BranchesPage() {
               <tr key={b.branchId} className="border-b border-border/50 last:border-0">
                 <td className="px-4 py-3 font-medium">{b.branchName}</td>
                 <td className="px-4 py-3 text-muted">{[b.address, b.city, b.province].filter(Boolean).join(", ") || "—"}</td>
-                <td className="px-4 py-3"><span className={`rounded-full px-2 py-0.5 text-xs ${b.isActive ? "bg-success/20 text-success" : "bg-muted/20 text-muted"}`}>{b.isActive ? "Active" : "Inactive"}</span></td>
+                <td className="px-4 py-3"><span className={`whitespace-nowrap rounded-full px-2 py-0.5 text-xs ${b.isActive ? "bg-success/20 text-success" : "bg-muted/20 text-muted"}`}>{b.isActive ? "Active" : "Inactive"}</span></td>
                 <td className="px-4 py-3 text-muted whitespace-nowrap">{b.lastSync ? new Date(b.lastSync).toLocaleString() : "Never"}</td>
                 <td className="px-4 py-3 font-mono text-xs text-muted break-all">{b.branchId}</td>
               </tr>
@@ -78,7 +78,7 @@ export default function BranchesPage() {
         <Modal onClose={() => setNewCreds(null)} title="Branch created — save credentials">
           <p className="mb-3 text-xs text-muted">API Secret is shown once.</p>
           {["branchId","apiKey","apiSecret"].map((k) => (
-            <div key={k} className="mb-2 flex items-center justify-between gap-2 rounded-md border border-border bg-panel2 p-3">
+            <div key={k} className="mb-2 flex items-start justify-between gap-2 rounded-md border border-border bg-panel2 p-3">
               <div className="min-w-0 flex-1">
                 <div className="text-xs text-muted">{k}</div>
                 <div className="break-all font-mono text-xs">{newCreds.branch[k]}</div>
@@ -95,7 +95,7 @@ export default function BranchesPage() {
 function Modal({ children, title, onClose }: any) {
   return (
     <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/60 p-4" onClick={onClose}>
-      <div className="glass my-auto w-full max-w-md rounded-2xl p-5" onClick={(e) => e.stopPropagation()}>
+      <div className="glass my-auto max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl p-5" onClick={(e) => e.stopPropagation()}>
         <h3 className="mb-4 text-base font-semibold">{title}</h3>
         {children}
       </div>

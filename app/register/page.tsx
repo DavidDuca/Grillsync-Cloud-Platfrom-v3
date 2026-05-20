@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import Link from "next/link";
-import { AuthFooter } from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -56,7 +56,7 @@ export default function RegisterPage() {
           </button>
         </form>
       </div>
-      <AuthFooter />
+      <Footer />
     </main>
   );
 }
