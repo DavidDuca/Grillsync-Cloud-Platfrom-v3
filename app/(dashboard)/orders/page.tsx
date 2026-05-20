@@ -66,9 +66,7 @@ export default function OrdersPage() {
               <tr key={o._id} className="border-b border-border/50 last:border-0">
                 <td className="px-4 py-3 font-mono text-xs break-all">{o.orderId}</td>
                 <td className="px-4 py-3 text-muted">{o.branchName || o.branchId}</td>
-                <td className="px-4 py-3 text-muted">{(o.items || []).reduce((s: number, i: any) => s + (i.quantity || 0), 0)}</td>
                 <td className="px-4 py-3 font-medium whitespace-nowrap">{peso(o.total)}</td>
-                <td className="px-4 py-3 text-muted">{o.paymentMethod || "cash"}</td>
                 <td className="px-4 py-3 text-muted whitespace-nowrap">{o.paidAt ? new Date(o.paidAt).toLocaleString() : "—"}</td>
               </tr>
             ))}
