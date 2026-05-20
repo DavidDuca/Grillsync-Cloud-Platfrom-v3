@@ -15,8 +15,7 @@
  *
  * Dependencies already in your project: mongoose, bcryptjs, dotenv.
  *
- * Login credentials are printed at the end. email: demo@grillsync.app pw: Demo (atsymbol) Grill2026
- * 
+ * Login credentials are printed at the end.
  */
 
 require("dotenv").config({ path: ".env.local" });
@@ -141,6 +140,15 @@ function buildOrder({ restaurantId, branchId, dayDate, seq, profile }) {
     const existing = chosen.find((c) => c.name === m.name);
     if (existing) existing.qty += 1;
     else chosen.push({ name: m.name, price: m.price, qty: randInt(1, 2) });
+  }
+  // Normalize each line with every common field name the UI might read
+  for (const l of chosen) {
+    l.quantity = l.qty;
+    l.unitPrice = l.price;
+    l.subtotal = l.price * l.qty;
+    l.lineTotal = l.subtotal;
+    l.total = l.subtotal;
+    l.amount = l.subtotal;
   }
   let subtotal = chosen.reduce((s, l) => s + l.price * l.qty, 0);
   subtotal = Math.round(subtotal * profile.ticketMult);

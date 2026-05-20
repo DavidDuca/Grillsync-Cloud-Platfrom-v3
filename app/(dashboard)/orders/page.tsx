@@ -59,7 +59,7 @@ export default function OrdersPage() {
       <div className="glass overflow-x-auto rounded-2xl">
         <table className="w-full min-w-[720px] text-sm">
           <thead className="border-b border-border text-left text-muted">
-            <tr>{["Order","Branch","Items","Total","Payment","When"].map((h) => <th key={h} className="px-4 py-3 font-medium whitespace-nowrap">{h}</th>)}</tr>
+            <tr>{["Order","Branch","Total","When"].map((h) => <th key={h} className="px-4 py-3 font-medium whitespace-nowrap">{h}</th>)}</tr>
           </thead>
           <tbody>
             {orders.map((o) => (
