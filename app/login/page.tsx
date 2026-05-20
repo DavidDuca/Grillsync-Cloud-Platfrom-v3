@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { api } from "@/lib/api";
+import { AuthFooter } from "@/components/Footer";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -23,10 +24,10 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen gradient-hero">
-      <div className="mx-auto max-w-md px-6 py-20">
+    <main className="flex min-h-screen flex-col gradient-hero">
+      <div className="mx-auto w-full max-w-md flex-1 px-4 py-10 sm:px-6 sm:py-16 md:py-20">
         <Link href="/" className="text-sm text-muted hover:text-text">&larr; Back</Link>
-        <h1 className="mt-6 text-3xl font-semibold">Welcome back</h1>
+        <h1 className="mt-6 text-2xl font-semibold sm:text-3xl">Welcome back</h1>
         <p className="mt-2 text-sm text-muted">Sign in to your dashboard.</p>
         <form onSubmit={submit} className="mt-8 grid gap-4">
           <label className="text-sm">
@@ -44,6 +45,7 @@ export default function LoginPage() {
           <p className="text-center text-xs text-muted">No account? <Link href="/register" className="text-brand">Register</Link></p>
         </form>
       </div>
+      <AuthFooter />
     </main>
   );
 }

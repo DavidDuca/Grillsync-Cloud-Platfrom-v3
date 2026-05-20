@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import Link from "next/link";
+import { AuthFooter } from "@/components/Footer";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -27,10 +28,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="min-h-screen gradient-hero">
-      <div className="mx-auto max-w-2xl px-6 py-12">
+    <main className="flex min-h-screen flex-col gradient-hero">
+      <div className="mx-auto w-full max-w-2xl flex-1 px-4 py-8 sm:px-6 sm:py-12">
         <Link href="/" className="text-sm text-muted hover:text-text">&larr; Back</Link>
-        <h1 className="mt-6 text-3xl font-semibold">Register your restaurant</h1>
+        <h1 className="mt-6 text-2xl font-semibold sm:text-3xl">Register your restaurant</h1>
         <p className="mt-2 text-sm text-muted">Creates owner account, first branch, and API credentials.</p>
 
         <form onSubmit={submit} className="mt-8 grid gap-5">
@@ -55,15 +56,16 @@ export default function RegisterPage() {
           </button>
         </form>
       </div>
+      <AuthFooter />
     </main>
   );
 }
 
 function Section({ title, children }: any) {
   return (
-    <div className="glass rounded-2xl p-5">
+    <div className="glass rounded-2xl p-4 sm:p-5">
       <h3 className="mb-3 text-sm font-medium text-muted">{title}</h3>
-      <div className="grid gap-3 md:grid-cols-2">{children}</div>
+      <div className="grid gap-3 sm:grid-cols-2">{children}</div>
     </div>
   );
 }

@@ -46,13 +46,13 @@ export default function ExpensesPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-end justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold">Expenses</h1>
-          <p className="text-sm text-muted">Affects profit analytics. Supports branch filtering.</p>
+          <h1 className="text-xl font-semibold sm:text-2xl">Expenses</h1>
+          <p className="text-xs text-muted sm:text-sm">Affects profit analytics. Supports branch filtering.</p>
         </div>
-        <div className="flex gap-2">
-          <select value={branchId} onChange={(e) => setBranchId(e.target.value)} className="rounded-md border border-border bg-panel2 px-3 py-2 text-sm">
+        <div className="flex flex-wrap gap-2">
+          <select value={branchId} onChange={(e) => setBranchId(e.target.value)} className="min-w-0 flex-1 rounded-md border border-border bg-panel2 px-3 py-2 text-sm sm:flex-none">
             <option value="">All branches</option>
             {branches.map((b) => <option key={b.branchId} value={b.branchId}>{b.branchName}</option>)}
           </select>
@@ -66,9 +66,9 @@ export default function ExpensesPage() {
       </div>
 
       <div className="glass overflow-x-auto rounded-2xl">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[760px] text-sm">
           <thead className="border-b border-border text-left text-muted">
-            <tr>{["Description","Category","Branch","Amount","Date","Receipt",""].map((h) => <th key={h} className="px-4 py-3 font-medium">{h}</th>)}</tr>
+            <tr>{["Description","Category","Branch","Amount","Date","Receipt",""].map((h) => <th key={h} className="px-4 py-3 font-medium whitespace-nowrap">{h}</th>)}</tr>
           </thead>
           <tbody>
             {items.map((e) => (
@@ -76,8 +76,8 @@ export default function ExpensesPage() {
                 <td className="px-4 py-3">{e.description}</td>
                 <td className="px-4 py-3 text-muted">{e.category}</td>
                 <td className="px-4 py-3 text-muted">{branches.find((b) => b.branchId === e.branchId)?.branchName || "—"}</td>
-                <td className="px-4 py-3 font-medium">{peso(e.amount)}</td>
-                <td className="px-4 py-3 text-muted">{new Date(e.expenseDate).toLocaleDateString()}</td>
+                <td className="px-4 py-3 font-medium whitespace-nowrap">{peso(e.amount)}</td>
+                <td className="px-4 py-3 text-muted whitespace-nowrap">{new Date(e.expenseDate).toLocaleDateString()}</td>
                 <td className="px-4 py-3">{e.receiptImage ? <a href={e.receiptImage} target="_blank" className="text-brand">View</a> : "—"}</td>
                 <td className="px-4 py-3"><button onClick={() => del(e._id)} className="text-muted hover:text-danger"><Trash2 className="h-4 w-4" /></button></td>
               </tr>
@@ -88,8 +88,8 @@ export default function ExpensesPage() {
       </div>
 
       {show && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={() => setShow(false)}>
-          <form onSubmit={save} onClick={(e) => e.stopPropagation()} className="glass grid w-full max-w-md gap-3 rounded-2xl p-5">
+        <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/60 p-4" onClick={() => setShow(false)}>
+          <form onSubmit={save} onClick={(e) => e.stopPropagation()} className="glass my-auto grid w-full max-w-md gap-3 rounded-2xl p-5">
             <h3 className="text-base font-semibold">Add expense</h3>
             <input required placeholder="Description" value={f.description} onChange={(e) => setF({ ...f, description: e.target.value })}
               className="rounded-md border border-border bg-panel2 px-3 py-2 outline-none focus:border-brand" />
