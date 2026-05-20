@@ -133,15 +133,12 @@ export default function Dashboard() {
           </ul>
         </Panel>
 
-        <Panel
-          title="Branch comparison"
-          subtitle="Hover each bar to view details."
-        >
+        <Panel title="Branch comparison">
           <div className="h-[220px] sm:h-[260px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={perBranch} margin={{ top: 5, right: 8, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#26262c" />
-                <XAxis dataKey="branchName" stroke="#8a8a93" tick={false} axisLine={false} height={4} />
+                <XAxis dataKey="branchName" stroke="#8a8a93" fontSize={11} interval={0} />
                 <YAxis stroke="#8a8a93" fontSize={11} width={40} />
                 <Tooltip
                   contentStyle={{ background: "#111114", border: "1px solid #26262c", borderRadius: 8 }}
