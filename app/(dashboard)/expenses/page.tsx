@@ -102,8 +102,15 @@ export default function ExpensesPage() {
               <option value="">Restaurant-wide</option>
               {branches.map((b) => <option key={b.branchId} value={b.branchId}>{b.branchName}</option>)}
             </select>
-            <input type="datetime-local" value={f.expenseDate} onChange={(e) => setF({ ...f, expenseDate: e.target.value })}
-              className="rounded-md border border-border bg-panel2 px-3 py-2" />
+            <label className="text-xs text-muted">Date and Time
+              <input
+                required
+                type="datetime-local"
+                value={f.expenseDate}
+                onChange={(e) => setF({ ...f, expenseDate: e.target.value })}
+                className="mt-1 block w-full rounded-md border border-border bg-panel2 px-3 py-2 outline-none focus:border-brand"
+              />
+            </label>
             <label className="text-xs text-muted">Receipt image
               <input type="file" accept="image/*" onChange={onFile} className="mt-1 block w-full text-xs" />
             </label>
