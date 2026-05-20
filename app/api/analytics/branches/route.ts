@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
       { $match: { restaurantId: a.restaurantId, expenseDate: { $gte: start, $lte: end } } },
       { $group: { _id: "$branchId", expenses: { $sum: "$amount" } } },
     ]),
-    Branch.find({ restaurantId: a.restaurantId }).select("branchId branchName").lean(),
+    (Branch as any).find({ restaurantId: a.restaurantId }).select("branchId branchName").lean(),
   ]);
   const revMap = Object.fromEntries(rev.map((r) => [r._id, r]));
   const expMap = Object.fromEntries(exp.map((r) => [r._id, r]));
