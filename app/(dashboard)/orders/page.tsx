@@ -59,14 +59,16 @@ export default function OrdersPage() {
       <div className="glass overflow-x-auto rounded-2xl">
         <table className="w-full min-w-[720px] text-sm">
           <thead className="border-b border-border text-left text-muted">
-            <tr>{["Order","Branch","Total","When"].map((h) => <th key={h} className="px-4 py-3 font-medium whitespace-nowrap">{h}</th>)}</tr>
+            <tr>{["Order","Branch","Items","Total","Payment","When"].map((h) => <th key={h} className="px-4 py-3 font-medium whitespace-nowrap">{h}</th>)}</tr>
           </thead>
           <tbody>
             {orders.map((o) => (
               <tr key={o._id} className="border-b border-border/50 last:border-0">
                 <td className="px-4 py-3 font-mono text-xs break-all">{o.orderId}</td>
                 <td className="px-4 py-3 text-muted">{o.branchName || o.branchId}</td>
+                <td className="px-4 py-3 text-muted">{(o.items || []).reduce((s: number, i: any) => s + (i.quantity || 0), 0)}</td>
                 <td className="px-4 py-3 font-medium whitespace-nowrap">{peso(o.total)}</td>
+                <td className="px-4 py-3 text-muted">{o.paymentMethod || "cash"}</td>
                 <td className="px-4 py-3 text-muted whitespace-nowrap">{o.paidAt ? new Date(o.paidAt).toLocaleString() : "—"}</td>
               </tr>
             ))}
