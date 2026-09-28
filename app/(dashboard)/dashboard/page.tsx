@@ -52,7 +52,7 @@ export default function Dashboard() {
         api.get("/analytics/summary" + q),
         api.get("/analytics/revenue-trend" + q),
         api.get("/analytics/best-sellers" + q),
-        api.get("/analytics/branches" + `?range=${range}`),
+        api.get("/analytics/branches" + `?range=${range}&tz=${tz}`),
         // Pull today's orders to bucket by hour client-side.
         api.get("/orders", {
           params: { from: isoToday, to: isoToday, pageSize: 1000, page: 1, branchId },
