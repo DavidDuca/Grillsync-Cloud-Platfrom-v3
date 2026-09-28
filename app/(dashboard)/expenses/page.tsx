@@ -35,7 +35,7 @@ export default function ExpensesPage() {
 
   async function save(e: any) {
     e.preventDefault();
-    await api.post("/expenses", { ...f, amount: Number(f.amount) });
+    await api.post("/expenses", { ...f, amount: Number(f.amount), expenseDate: new Date(f.expenseDate).toISOString() });
     setShow(false); setF({ description: "", amount: "", category: "Other", branchId: "", expenseDate: "", receiptImage: "" });
     load();
   }
