@@ -3,13 +3,13 @@ import { connectDB } from "@/lib/mongodb";
 import Order from "@/models/Order";
 import Expense from "@/models/Expense";
 import { getAuth } from "@/lib/auth";
-import { rangeWindow } from "@/lib/range";
+import { rangeWindow, tzOffsetFrom } from "@/lib/range";
 export const runtime = "nodejs";
 
 export async function GET(req: NextRequest) {
   const a = getAuth(req); if (!a) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const sp = req.nextUrl.searchParams;
-  const { start, end } = rangeWindow(sp.get("range") || "today");
+  const { start, end } = rangeWindow(sp.get("range") || "today", tzOffsetFrom(sp));
   const branchId = sp.get("branchId");
   await connectDB();
   const baseOrder: any = { restaurantId: a.restaurantId, paidAt: { $gte: start, $lte: end } };
