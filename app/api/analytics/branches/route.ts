@@ -4,12 +4,13 @@ import Order from "@/models/Order";
 import Expense from "@/models/Expense";
 import Branch from "@/models/Branch";
 import { getAuth } from "@/lib/auth";
-import { rangeWindow } from "@/lib/range";
+import { rangeWindow, tzOffsetFrom } from "@/lib/range";
 export const runtime = "nodejs";
 
 export async function GET(req: NextRequest) {
   const a = getAuth(req); if (!a) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const { start, end } = rangeWindow(req.nextUrl.searchParams.get("range") || "today");
+  const sp = req.nextUrl.searchParams;
+  const { start, end } = rangeWindow(sp.get("range") || "today", tzOffsetFrom(sp));
   await connectDB();
 
   const [rev, exp, branches] = await Promise.all([
