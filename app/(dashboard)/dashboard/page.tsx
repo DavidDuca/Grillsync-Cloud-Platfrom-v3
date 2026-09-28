@@ -40,7 +40,8 @@ export default function Dashboard() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const q = `?range=${range}${branchId ? `&branchId=${branchId}` : ""}`;
+    const tz = new Date().getTimezoneOffset();
+    const q = `?range=${range}&tz=${tz}${branchId ? `&branchId=${branchId}` : ""}`;
 
     // Today-only window for the hourly chart (independent of toolbar range)
     const today = new Date();
